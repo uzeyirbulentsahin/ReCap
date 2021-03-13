@@ -1,0 +1,29 @@
+<h3>Kiralamalar</h3>
+<div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table *ngIf="dataloaded==true" class="table table-striped">
+    <thead>
+        <tr>
+    
+            <th>Customer</th>
+            <th>User</th>
+            <th>Car</th>
+            <th>Model</th>
+            <th>Rent Date</th>
+            <th>Return Date</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rental of rentals">
+      
+            <td>{{rental.customerName}}</td>
+            <td>{{rental.userName}}</td>
+            <td>{{rental.carName}}</td>
+            <td>{{rental.carModel}}</td>
+            <td>{{rental.rentalDate}}</td>
+            <td>{{rental.returnDate}}</td>
+        </tr>
+    </tbody>
+</table>
