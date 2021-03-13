@@ -1,21 +1,27 @@
 <h3>Arabalar</h3>
-<table>
+<div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table *ngIf="dataloaded==true" class="table table-striped">
     <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+    
+            <th>Marka</th>
+            <th>Renk</th>
+            <th>Model</th>
+            <th>Açıklama</th>
+       
+
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let car of cars">
+      
+            <td>{{car.brandName}}</td>
+            <td>{{car.colorName}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{{car.description}}</td>
+           
         </tr>
     </tbody>
 </table>

@@ -1,21 +1,23 @@
 <h3>Müşteriler</h3>
-<table>
+<div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table *ngIf="dataloaded==true" class="table table-striped">
     <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+    
+            <th>Company Name</th>
+        
+       
+
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let customer of customers">
+      
+
+            <td>{{customer.companyName}}</td>
+           
         </tr>
     </tbody>
 </table>
