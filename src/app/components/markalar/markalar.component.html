@@ -1,21 +1,13 @@
-<h3>Markalar</h3>
 <div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-<table *ngIf="dataloaded==true" class="table table-striped">
-    <thead>
-        <tr>
-    
-            <th>Name</th>
-       
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let brand of brands">
-      
-            <td>{{brand.name}}</td>
-           
-        </tr>
-    </tbody>
-</table>
+<ul  *ngIf="dataloaded==true" class="list-group">
+    <li (click)="setMarkalar(brand)" 
+    routerLink="/cars/brandId/{{brand.id}}"
+    *ngFor="let brand of brands" 
+    [class]="seciliMarka(brand)">{{brand.name}}</li>
+</ul>
+
+
+

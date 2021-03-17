@@ -10,6 +10,7 @@ import { BrandService } from 'src/app/services/brand.service';
 export class MarkalarComponent implements OnInit {
   brands: Brand[] = [];
   dataloaded=false;
+  secilenMarka:Brand;
   
   constructor(private rentalService: BrandService) { }
 
@@ -22,6 +23,19 @@ export class MarkalarComponent implements OnInit {
         this.brands = response.data;
         this.dataloaded=true;
       });
+  }
+  setMarkalar(brand:Brand){
+   this.secilenMarka=brand;
+    
+  }
+  seciliMarka(brand:Brand){
+    if(brand == this.secilenMarka)
+    {
+      return "list-group-item active";
+    }
+    else{
+      return "list-group-item";
+    }
   }
 
 }

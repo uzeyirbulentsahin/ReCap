@@ -10,18 +10,30 @@ import { ColorService } from 'src/app/services/color.service';
 export class RenklerComponent implements OnInit {
 
   colors: Color[] = [];
-  dataloaded=false;
-  
+  dataloaded = false;
+  secilenRenk: Color ;
+
   constructor(private renklerService: ColorService) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getColors();
   }
 
   getColors() {
     this.renklerService.getColors().subscribe((response) => {
-        this.colors = response.data;
-        this.dataloaded=true;
-      });
+      this.colors = response.data;
+      this.dataloaded = true;
+    });
+  }
+  setRenkler(color: Color) {
+    this.secilenRenk = color;
+
+  }
+  secilenRenkActive(color: Color) {
+    if ( color == this.secilenRenk ) {
+      return "list-group-item active";
+    } else {
+      return "list-group-item";
+    }
   }
 }

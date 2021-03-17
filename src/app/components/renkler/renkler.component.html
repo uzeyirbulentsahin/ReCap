@@ -1,21 +1,12 @@
-<h3>Renkler</h3>
 <div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-<table *ngIf="dataloaded==true" class="table table-striped">
-    <thead>
-        <tr>
-    
-            <th>Name</th>
-       
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let color of colors">
+  <ul *ngIf="dataloaded==true" class="list-group">
+      <li
+        routerLink="/cars/colorId/{{color.id}}"
+       (click)="setRenkler(color)"  
+       *ngFor="let color of colors" 
+       [class]="secilenRenkActive(color)">{{color.name}}</li>
       
-            <td>{{color.name}}</td>
-           
-        </tr>
-    </tbody>
-</table>
+    </ul>

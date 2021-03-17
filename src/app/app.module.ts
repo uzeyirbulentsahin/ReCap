@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MarkalarComponent } from './components/markalar/markalar.component';
@@ -11,6 +10,8 @@ import { RentsComponent } from './components/rents/rents.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CarDetailsComponent } from './components/cardetails/cardetails.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     CarsComponent,
     RentsComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule
   ],
