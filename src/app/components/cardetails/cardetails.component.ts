@@ -13,12 +13,13 @@ export class CarDetailsComponent implements OnInit {
   cardetails:CarImage[]=[];
   dataloaded=false;
   GelenId:number;
+  
 
   constructor(private activatedRoute:ActivatedRoute,
               private cardetailService:CardetailService ) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute)
+
     this.activatedRoute.params.subscribe(params => {
       if (params["Id"]) {
         this.getCarDetails(params["Id"])    
@@ -31,6 +32,13 @@ export class CarDetailsComponent implements OnInit {
       this.cardetails = response.data;
       this.dataloaded = true;
     });
+  }
+  getSliderClassName(index:Number){
+    if(index == 0){
+      return "carousel-item active";
+    } else {
+      return "carousel-item";
+    }
   }
 }
  
