@@ -1,27 +1,53 @@
-<h3>Arabalar</h3>
-<div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<table *ngIf="dataloaded==true" class="table table-striped">
-    <thead>
-        <tr>
-    
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model</th>
-            <th>Açıklama</th>
-            <th>#</th>
-       
+<div *ngIf="dataloaded == false" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="mb-3">
+  <label for="filterText" class="form-label">Arama</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="ifadenizi giriniz..." />
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+  {{ filterText }} aradınız
+</div>
+<div class="mb-3">
+  <div class="row">
+    <div class="col-md-5">
+      <select class="form-select" id="colors" aria-label="Default select example">
+        <option selected>Renkler</option>
+        <option *ngFor="let color of colors" value="1">{{ color.name }}</option>
+      </select>
+    </div>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr   *ngFor="let car of cars" [routerLink]="['/cardetails',car.id]" >
-            <td >{{car.brandName}}</td>
-            <td>{{car.colorName}}</td>
-            <td>{{car.modelYear}}</td>
-            <td>{{car.description}}</td>     
-            <td>{{car.id}}</td>   
-        </tr>
-    </tbody>
+    <div class="col-md-5">
+      <select class="form-select" id="markalar" aria-label="Default select example">
+        <option selected>Markalar</option>
+        <option *ngFor="let brand of brands" value="1">{{ brand.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-info">Filtrele</button>
+    </div>
+  </div>
+</div>
+
+<h3>Arabalar</h3>
+
+<table *ngIf="dataloaded == true" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Marka</th>
+      <th>Renk</th>
+      <th>Model</th>
+      <th>Açıklama</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars | carFilterPipe: filterText" [routerLink]="['/cardetails', car.id]">
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName }}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.description }}</td>
+      <td>{{ car.id }}</td>
+    </tr>
+  </tbody>
 </table>

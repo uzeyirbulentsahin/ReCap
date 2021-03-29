@@ -12,6 +12,7 @@ export class RenklerComponent implements OnInit {
   colors: Color[] = [];
   dataloaded = false;
   secilenRenk: Color ;
+  filterText="";
 
   constructor(private renklerService: ColorService) { }
 

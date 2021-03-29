@@ -11,6 +11,7 @@ export class MarkalarComponent implements OnInit {
   brands: Brand[] = [];
   dataloaded=false;
   secilenMarka:Brand;
+  filterText="";
   
   constructor(private rentalService: BrandService) { }
 

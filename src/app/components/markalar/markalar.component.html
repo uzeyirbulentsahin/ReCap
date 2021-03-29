@@ -1,11 +1,18 @@
 <div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Arama</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="ifadenizi giriniz...">
+  </div>
+  
+
+
 
 <ul  *ngIf="dataloaded==true" class="list-group">
     <li (click)="setMarkalar(brand)" 
     routerLink="/cars/brandId/{{brand.id}}"
-    *ngFor="let brand of brands" 
+    *ngFor="let brand of brands | brandFilterPipe:filterText" 
     [class]="seciliMarka(brand)">{{brand.name}}</li>
 </ul>
 

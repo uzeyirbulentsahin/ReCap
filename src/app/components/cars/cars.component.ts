@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { Color } from 'src/app/models/color';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-cars',
@@ -10,11 +14,14 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarsComponent implements OnInit {
   cars: Car[] = [];
+  brands: Brand[] = [];
+  colors: Color[] = [];
   dataloaded = false;
   secilenCar: Car;
-
+  filterText="";
+  
   constructor(private arabaService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,private rentalService: BrandService,private renklerService: ColorService
   ) { }
 
   ngOnInit(): void {
@@ -27,9 +34,22 @@ export class CarsComponent implements OnInit {
         this.getCars()
       }
     });
+    this.getBrands()
+    this.getColors()
 
   }
-
+  getColors() {
+    this.renklerService.getColors().subscribe((response) => {
+      this.colors = response.data;
+      this.dataloaded = true;
+    });
+  }
+  getBrands() {
+    this.rentalService.getBrands().subscribe((response) => {
+        this.brands = response.data;
+        this.dataloaded=true;
+      });
+  }
   getCars() {
     this.arabaService.getCars().subscribe((response) => {
       this.cars = response.data;

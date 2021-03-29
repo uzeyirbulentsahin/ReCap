@@ -1,12 +1,15 @@
 <div *ngIf="dataloaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Arama</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="ifadenizi giriniz...">
+  </div>
   <ul *ngIf="dataloaded==true" class="list-group">
       <li
         routerLink="/cars/colorId/{{color.id}}"
        (click)="setRenkler(color)"  
-       *ngFor="let color of colors" 
+       *ngFor="let color of colors | colorFilterPipe:filterText" 
        [class]="secilenRenkActive(color)">{{color.name}}</li>
       
     </ul>
